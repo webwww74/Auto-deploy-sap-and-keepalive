@@ -269,13 +269,13 @@ jobs:
         #cf spaces
         
         # 获取组织列表
-        ORG=$(cf orgs | sed '4p')
+        ORG=$(cf orgs | sed -n '4p')
         #ORG=$(cf target -o hitechsg | sed -n '4p')
         echo "Selected org: $ORG"
         echo "ORG=$ORG" >> $GITHUB_ENV
 
         # 获取空间列表
-        SPACE=$(cf spaces | sed '4p')
+        SPACE=$(cf spaces | sed -n '4p')
         #SPACE=$(cf target -s devsg | sed -n '4p')
         echo "Selected space: $SPACE"
         echo "SPACE=$SPACE" >> $GITHUB_ENV
