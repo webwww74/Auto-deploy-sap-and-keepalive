@@ -265,8 +265,8 @@ jobs:
     - name: Login to Cloud Foundry
       run: |
         cf login -a ${{ env.CF_API }} -u "${{ secrets.EMAIL }}" -p "${{ secrets.PASSWORD }}"
-        cf orgs
-        cf spaces
+        #cf orgs
+        #cf spaces
         
         # 获取组织列表
         ORG=$(cf orgs | sed -n '4p')
@@ -283,10 +283,9 @@ jobs:
         echo "SPACE=$SPACE" >> $GITHUB_ENV
 
         # 使用获取的组织和空间重新登录
-        # cf login -a ${{ env.CF_API }} -u "${{ secrets.EMAIL }}" -p "${{ secrets.PASSWORD }}" -o "$ORG" -s "$SPACE"
-        cf login -a ${{ env.CF_API }} -u "${{ secrets.EMAIL }}" -p "${{ secrets.PASSWORD }}" 
-        cf target -a ${{ env.CF_API }} -o hitechsg -s devsg
-       
+        cf login -a ${{ env.CF_API }} -u "${{ secrets.EMAIL }}" -p "${{ secrets.PASSWORD }}" -o "$ORG" -s "$SPACE"
+        #cf login -a ${{ env.CF_API }} -u "${{ secrets.EMAIL }}" -p "${{ secrets.PASSWORD }}" 
+              
     - name: Deploy application
       run: |
         if cf push ${{ env.APP_NAME }} --docker-image ${{ env.DOCKER_IMAGE }} -m ${{ env.MEMORY }} -k ${{ env.DISK }} --health-check-type port; then
