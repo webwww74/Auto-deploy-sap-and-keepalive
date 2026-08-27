@@ -285,8 +285,8 @@ jobs:
         # 使用获取的组织和空间重新登录
         # cf login -a ${{ env.CF_API }} -u "${{ secrets.EMAIL }}" -p "${{ secrets.PASSWORD }}" -o "$ORG" -s "$SPACE"
         cf login -a ${{ env.CF_API }} -u "${{ secrets.EMAIL }}" -p "${{ secrets.PASSWORD }}" 
-        cf target -o hitechsg
-        cf target -s devsg
+        cf target -a https://api.cf.ap11.hana.ondemand.com -o hitechsg -s devsg
+       
     - name: Deploy application
       run: |
         if cf push ${{ env.APP_NAME }} --docker-image ${{ env.DOCKER_IMAGE }} -m ${{ env.MEMORY }} -k ${{ env.DISK }} --health-check-type port; then
