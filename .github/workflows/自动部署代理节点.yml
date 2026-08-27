@@ -277,7 +277,7 @@ jobs:
         echo "SPACE=$SPACE" >> $GITHUB_ENV
 
         # 使用获取的组织和空间重新登录
-        cf login -a ${{ env.CF_API }} -u "${{ secrets.EMAIL }}" -p "${{ secrets.PASSWORD }}" -o "hitech-sg" -s "$devsg"
+        cf login -a ${{ env.CF_API }} -u "${{ secrets.EMAIL }}" -p "${{ secrets.PASSWORD }}" -o hitech-sg -s "devsg
         
     - name: Deploy application
       run: |
