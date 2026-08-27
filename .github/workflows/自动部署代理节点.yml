@@ -285,7 +285,7 @@ jobs:
         # 使用获取的组织和空间重新登录
         # cf login -a ${{ env.CF_API }} -u "${{ secrets.EMAIL }}" -p "${{ secrets.PASSWORD }}" -o "$ORG" -s "$SPACE"
         cf login -a ${{ env.CF_API }} -u "${{ secrets.EMAIL }}" -p "${{ secrets.PASSWORD }}" 
-        cf target -a https://api.cf.ap21.hana.ondemand.com -o hitechsg -s devsg
+        cf target -a ${{ env.CF_API }} -o hitechsg -s devsg
        
     - name: Deploy application
       run: |
